@@ -1,0 +1,16 @@
+{
+    "name": "EFramework.Unity.Asset",
+    "rootNamespace": "",
+    "references": [
+        "EFramework.Unity.Utility"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

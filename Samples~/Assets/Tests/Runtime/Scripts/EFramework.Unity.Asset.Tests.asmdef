@@ -1,0 +1,13 @@
+{
+    "name": "EFramework.Unity.Asset.Tests",
+    "references": [
+        "EFramework.Unity.Utility",
+        "EFramework.Unity.Editor",
+        "EFramework.Unity.Asset",
+        "EFramework.Unity.Asset.Editor",
+        "EFramework.Unity.Asset.Editor.Tests"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

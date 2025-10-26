@@ -1,0 +1,54 @@
+{
+  "name": "io.eframework.unity.asset",
+  "displayName": "Unity.Asset",
+  "description": "Unity.Asset 提供了一套完整的 Unity 资源管理解决方案，实现了从资源打包发布到运行时加载的全流程管理，支持资源加载、引用计数、自动卸载等特性。",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "license": "MIT",
+  "author": {
+    "name": "EFramework Innovation",
+    "email": "eframework-io@outlook.com",
+    "url": "https://github.com/eframework-io"
+  },
+  "homepage": "https://eframework.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eframework-io/Unity.Asset.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eframework-io/Unity.Asset/issues"
+  },
+  "keywords": [
+    "eframework",
+    "unity",
+    "asset"
+  ],
+  "files": [
+    ".puer",
+    "Editor",
+    "Editor.meta",
+    "Plugins",
+    "Plugins.meta",
+    "Runtime",
+    "Runtime.meta",
+    "Documentation~",
+    "Samples~",
+    "CHANGELOG.md",
+    "CHANGELOG.md.meta",
+    "LICENSE.md",
+    "LICENSE.md.meta",
+    "package.json",
+    "package.json.meta",
+    "README.md",
+    "README.md.meta",
+    "Third Party Notices.md",
+    "Third Party Notices.md.meta"
+  ],
+  "puerExports": [
+    "EFramework.Unity.Asset"
+  ],
+  "dependencies": {
+    "io.eframework.unity.utility": "1.0.0",
+    "io.eframework.unity.editor": "1.0.0"
+  }
+}

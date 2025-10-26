@@ -1,0 +1,15 @@
+{
+    "name": "EFramework.Unity.Asset.Editor.Tests",
+    "references": [
+        "EFramework.Unity.Utility",
+        "EFramework.Unity.Editor",
+        "EFramework.Unity.Asset",
+        "EFramework.Unity.Asset.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

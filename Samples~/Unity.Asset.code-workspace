@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "Project",
+			"path": "."
+		},
+		{
+			"name": "Package",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"dotnet.defaultSolution": "Samples~.slnx",
+		"dotrush.roslyn.projectOrSolutionFiles": [
+			"Samples~.slnx"
+		]
+	}
+}
