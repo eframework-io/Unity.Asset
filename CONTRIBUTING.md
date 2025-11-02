@@ -13,7 +13,7 @@
 ## 技术路线
 
 ### 1. 开发语言
-- C# 10.0+：主要开发语言
+- C# 9.0：主要开发语言
 - 遵循 Unity C# 编码规范和最佳实践
 
 ### 2. 开发工具
@@ -52,7 +52,7 @@
 ├── Runtime/                                       # 运行时目录
 │   ├── Scripts/                                   # 运行时脚本
 │   │   ├── <Module1>.cs                           # 运行时模块1实现
-│   │   ├── <Module1>.Part02.cs                    # 运行时模块2实现2
+│   │   ├── <Module1>.Part02.cs                    # 运行时模块1实现2
 │   │   ├── <Module2>.cs                           # 运行时模块2实现
 │   │   └── ...
 │   ├── Resources/                                 # 运行时资源
@@ -88,7 +88,7 @@
 │
 ├── CHANGELOG.md                                   # 更新记录
 ├── CONTRIBUTING.md                                # 贡献指南
-├── LICENSE.md                                     # 开源协议
+├── LICENSE.md                                     # 许可协议
 ├── package.json                                   # 项目描述
 ├── README.md                                      # 项目文档
 ├── Third Party Notices.md                         # 依赖说明
@@ -136,14 +136,14 @@
 文件路径：`<项目目录>/README.md`
 
 ```markdown
-# <项目名称>
+# <产品名称>
 
 [![NPM](https://img.shields.io/npm/v/<项目包名>?label=NPM&logo=npm)](https://www.npmjs.com/package/<项目包名>)
 [![UPM](https://img.shields.io/npm/v/<项目包名>?label=UPM&logo=unity&registry_uri=https://package.openupm.com)](https://openupm.com/packages/<项目包名>)
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/<组织名称>/<项目名称>)
 [![Discord](https://img.shields.io/discord/<服务器编号>?label=Discord&logo=discord)](https://discord.gg/<永久邀请码>)
 
-<项目名称> 提供了/是一个/实现了 <核心功能>，支持/用于 <主要特性>。
+提供了/实现了 <核心功能>，支持/用于 <主要特性>。
 
 ## 功能特性
 
@@ -178,7 +178,7 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/<组织名称>/<项目名称>)
 [![Discord](https://img.shields.io/discord/<服务器编号>?label=Discord&logo=discord)](https://discord.gg/<永久邀请码>)
 
-<模块名称> 提供了/是一个/实现了 <核心功能>，支持/用于 <主要特性>。
+提供了/实现了 <核心功能>，支持/用于 <主要特性>。
 
 ## 功能特性
 
@@ -220,7 +220,7 @@
 // license that can be found in the LICENSE file.
 
 /// <summary>
-/// <模块名称> 提供了/是一个/实现了 <核心功能>，支持/用于 <主要特性>。
+/// <模块名称> 提供了/实现了 <核心功能>，支持/用于 <主要特性>。
 /// </summary>
 /// <remarks>
 /// <code>
@@ -321,30 +321,30 @@ graph LR
    // license that can be found in the LICENSE file.
 
    /// <summary>
-   /// 定义了游戏对象的基础行为接口。
+   /// IGameObject 定义了游戏对象的基础行为接口。
    /// 实现此接口的类型可以参与游戏交互。
    /// </summary>
    public interface IGameObject
    {
        /// <summary>
-       /// 初始化游戏对象。
+       /// Initialize 初始化游戏对象。
        /// </summary>
        void Initialize();
 
        /// <summary>
-       /// 处理游戏对象的更新逻辑。
+       /// Update 处理游戏对象的更新逻辑。
        /// </summary>
        /// <param name="deltaTime">上一帧到当前帧的时间间隔</param>
        void Update(float deltaTime);
 
        /// <summary>
-       /// 销毁游戏对象时的清理操作。
+       /// OnDestroy 销毁游戏对象时的清理操作。
        /// </summary>
        void OnDestroy();
    }
 
    /// <summary>
-   /// 表示无效的游戏状态。
+   /// InvalidGameStateException 表示无效的游戏状态。
    /// </summary>
    public class InvalidGameStateException : Exception
    {
@@ -407,10 +407,12 @@ Closes #123
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-using System;
 using NUnit.Framework;
 using <模块所在命名空间>;
 
+/// <summary>
+/// Test<模块名称> 是 <模块名称> 的单元测试。
+/// </summary>
 public class Test<模块名称>
 {
    [Test]
@@ -498,8 +500,8 @@ public class Test<模块名称>
 [描述实际的结果]
 
 ### 环境信息
-- Unity 版本：如 6000.0.32f1
 - 操作系统：如 Windows 11
+- 引擎版本：如 6000.0.32f1
 - 类库版本：如 1.0.0
 ```
 
