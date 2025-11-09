@@ -186,7 +186,7 @@ namespace EFramework.Unity.Asset.Editor
                     {
                         if (!bundleMode) GUI.color = Color.gray;
                         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-                        foldout = EditorGUILayout.Foldout(foldout, new GUIContent("Builder", "Assets Builder Options."));
+                        foldout = EditorGUILayout.Foldout(foldout, new GUIContent("Builder", "XAsset Builder Options."));
                     }
                     else foldout = true;
                     if (foldout && bundleMode)

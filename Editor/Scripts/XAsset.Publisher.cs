@@ -164,7 +164,7 @@ namespace EFramework.Unity.Asset.Editor
                     {
                         if (!bundleMode) GUI.color = Color.gray;
                         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-                        foldout = EditorGUILayout.Foldout(foldout, new GUIContent("Publisher", "Assets Publisher Options."));
+                        foldout = EditorGUILayout.Foldout(foldout, new GUIContent("Publisher", "XAsset Publisher Options."));
                     }
                     else foldout = true;
                     if (foldout && bundleMode)
