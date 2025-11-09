@@ -48,7 +48,7 @@
     "EFramework.Unity.Asset"
   ],
   "dependencies": {
-    "io.eframework.unity.utility": "1.1.0",
-    "io.eframework.unity.editor": "1.0.1"
+    "io.eframework.unity.utility": "1.1.1",
+    "io.eframework.unity.editor": "1.0.2"
   }
 }
