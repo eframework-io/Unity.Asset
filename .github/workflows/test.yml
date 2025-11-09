@@ -32,10 +32,6 @@ on:
         required: false
         type: string
         default: '["EditMode", "PlayMode"]'
-    outputs:
-      test_passed:
-        description: "测试是否通过"
-        value: ${{ jobs.test.outputs.passed }}
 
 permissions:
   checks: write
@@ -61,13 +57,12 @@ jobs:
 
     steps:
       - name: 检出项目仓库
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          lfs: true
           path: Package
 
       - name: 检出项目缓存
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ matrix.projectPath }}/Library
           key: Library-${{ runner.os }}-${{ hashFiles('**/ProjectSettings/ProjectVersion.txt') }}
@@ -157,7 +152,7 @@ jobs:
           customImage: unity-editor-ubuntu-linux-il2cpp-3:${{ matrix.unityVersion }}
 
       - name: 上传测试报告
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: always()
         with:
           name: Test#${{ github.run_number }}.Unity${{ matrix.unityVersion }}.${{ matrix.testMode }}.Reports
