@@ -83,7 +83,7 @@ namespace EFramework.Unity.Asset.Editor
         /// </code>
         /// 更多信息请参考模块文档。
         /// </remarks>
-        [XEditor.Tasks.Worker(name: "Build Assets", group: "Asset", priority: 101)]
+        [XEditor.Tasks.Worker(name: "Build Assets", group: "XAsset", priority: 101)]
         public class Builder : XEditor.Tasks.Worker,
             XEditor.Tasks.Panel.IOnGUI,
             XEditor.Event.Internal.OnPreprocessBuild,
@@ -98,7 +98,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Output 是输出路径配置键。
                 /// </summary>
-                public const string Output = "Asset/Builder/Output@Editor";
+                public const string Output = "XAsset/Builder/Output@Editor";
 
                 /// <summary>
                 /// OutputDefault 是输出路径默认值。
@@ -108,7 +108,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Include 是资源路径配置键。
                 /// </summary>
-                public const string Include = "Asset/Builder/Include@Editor";
+                public const string Include = "XAsset/Builder/Include@Editor";
 
                 /// <summary>
                 /// IncludeDefault 是资源路径默认值。
@@ -118,12 +118,12 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Exclude 是资源排除配置键。
                 /// </summary>
-                public const string Exclude = "Asset/Builder/Exclude@Editor";
+                public const string Exclude = "XAsset/Builder/Exclude@Editor";
 
                 /// <summary>
                 /// Stash 是资源暂存配置键。
                 /// </summary>
-                public const string Stash = "Asset/Builder/Stash@Editor";
+                public const string Stash = "XAsset/Builder/Stash@Editor";
 
                 /// <summary>
                 /// StashDefault 是资源暂存默认值。
@@ -133,7 +133,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// MergeMaterial 是材质合并配置键。
                 /// </summary>
-                public const string MergeMaterial = "Asset/Builder/Merge/Material@Editor";
+                public const string MergeMaterial = "XAsset/Builder/Merge/Material@Editor";
 
                 /// <summary>
                 /// MergeMaterialDefault 是材质合并默认值。
@@ -143,7 +143,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// MergeSingle 是资源合并配置键。
                 /// </summary>
-                public const string MergeSingle = "Asset/Builder/Merge/Single@Editor";
+                public const string MergeSingle = "XAsset/Builder/Merge/Single@Editor";
 
                 /// <summary>
                 /// MergeSingleDefault 是资源合并默认值。
@@ -153,14 +153,14 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// StreamingAssets 是资源拷贝配置键。
                 /// </summary>
-                public const string StreamingAssets = "Asset/Builder/Streaming/Assets@Editor";
+                public const string StreamingAssets = "XAsset/Builder/Streaming/Assets@Editor";
 
                 /// <summary>
                 /// StreamingAssets 是资源拷贝默认值。
                 /// </summary>
                 public const bool StreamingAssetsDefault = true;
 
-                public override string Section => "Asset";
+                public override string Section => "XAsset";
 
                 public override int Priority => 101;
 

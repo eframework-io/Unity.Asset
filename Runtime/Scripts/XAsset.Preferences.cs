@@ -40,7 +40,7 @@ namespace EFramework.Unity.Asset
             /// BundleMode 是 Bundle 模式开关的配置键。
             /// 启用后将从打包的资源文件加载资源，否则使用Resources加载。
             /// </summary>
-            public const string BundleMode = "Asset/BundleMode";
+            public const string BundleMode = "XAsset/BundleMode";
 
             /// <summary>
             /// BundleModeDefault 是 Bundle 模式的默认值，默认开启以支持资源打包加载。
@@ -51,7 +51,7 @@ namespace EFramework.Unity.Asset
             /// ReferMode 是引用计数模式的配置键。
             /// 启用后会自动跟踪资源引用，确保资源正确释放。
             /// </summary>
-            public const string ReferMode = "Asset/ReferMode";
+            public const string ReferMode = "XAsset/ReferMode";
 
             /// <summary>
             /// ReferModeDefault 是引用计数模式的默认值，默认开启以防止资源泄漏
@@ -62,18 +62,18 @@ namespace EFramework.Unity.Asset
             /// DebugMode 是调试模式的配置键。
             /// 启用后会输出详细的资源加载和释放日志。
             /// </summary>
-            public const string DebugMode = "Asset/DebugMode";
+            public const string DebugMode = "XAsset/DebugMode";
 
             /// <summary>
             /// SimulateMode 是编辑器模拟模式的配置键。
             /// 在编辑器中可以模拟Bundle模式的资源加载，方便测试。
             /// </summary>
-            public const string SimulateMode = "Asset/SimulateMode@Editor";
+            public const string SimulateMode = "XAsset/SimulateMode@Editor";
 
             /// <summary>
             /// OffsetFactor 是 Bundle 文件偏移的配置键。
             /// </summary>
-            public const string OffsetFactor = "Asset/OffsetFactor";
+            public const string OffsetFactor = "XAsset/OffsetFactor";
 
             /// <summary>
             /// OffsetFactorDefault 是 Bundle 文件偏移的默认值。
@@ -84,7 +84,7 @@ namespace EFramework.Unity.Asset
             /// AssetUri 是资源包文件名的配置键。
             /// 用于指定打包后的资源文件名称。
             /// </summary>
-            public const string AssetUri = "Asset/AssetUri";
+            public const string AssetUri = "XAsset/AssetUri";
 
             /// <summary>
             /// AssetUriDefault 是资源包的默认文件名。
@@ -94,7 +94,7 @@ namespace EFramework.Unity.Asset
             /// <summary>
             /// LocalUri 是本地资源路径的配置键，指定资源文件在本地存储的相对路径。
             /// </summary>
-            public const string LocalUri = "Asset/LocalUri";
+            public const string LocalUri = "XAsset/LocalUri";
 
             /// <summary>
             /// LocalUriDefault 是本地资源的默认存储路径。
@@ -104,16 +104,16 @@ namespace EFramework.Unity.Asset
             /// <summary>
             /// RemoteUri 是远程资源地址的配置键，用于指定资源更新的远程服务器地址。
             /// </summary>
-            public const string RemoteUri = "Asset/RemoteUri";
+            public const string RemoteUri = "XAsset/RemoteUri";
 
             /// <summary>
             /// RemoteUriDefault 是远程资源的默认下载地址，支持变量求值。
             /// </summary>
             public const string RemoteUriDefault = "Builds/Patch/${Environment.Author}/${Environment.Version}/${Environment.Platform}/Assets";
 
-            public virtual string Section => "Asset";
+            public virtual string Section => "XAsset";
 
-            public virtual string Tooltip => "Preferences of Asset.";
+            public virtual string Tooltip => "Preferences of XAsset.";
 
             public virtual bool Foldable => true;
 

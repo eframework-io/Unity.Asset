@@ -87,7 +87,7 @@ namespace EFramework.Unity.Asset.Editor
         /// 
         /// 更多信息请参考模块文档。
         /// </remarks>
-        [XEditor.Tasks.Worker(name: "Publish Assets", group: "Asset", runasync: true, priority: 102)]
+        [XEditor.Tasks.Worker(name: "Publish Assets", group: "XAsset", runasync: true, priority: 102)]
         public class Publisher : XEditor.MinIO, XEditor.Tasks.Panel.IOnGUI
         {
             /// <summary>
@@ -98,7 +98,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Endpoint 是存储服务地址的键名。
                 /// </summary>
-                public const string Endpoint = "Asset/Publisher/Endpoint@Editor";
+                public const string Endpoint = "XAsset/Publisher/Endpoint@Editor";
 
                 /// <summary>
                 /// EndpointDefault 是存储服务地址的默认值。
@@ -108,7 +108,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Bucket 是存储分区名称的键名。
                 /// </summary>
-                public const string Bucket = "Asset/Publisher/Bucket@Editor";
+                public const string Bucket = "XAsset/Publisher/Bucket@Editor";
 
                 /// <summary>
                 /// BucketDefault 是存储分区名称的默认值。
@@ -118,7 +118,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Access 是存储服务凭证的键名。
                 /// </summary>
-                public const string Access = "Asset/Publisher/Access@Editor";
+                public const string Access = "XAsset/Publisher/Access@Editor";
 
                 /// <summary>
                 /// AccessDefault 是存储服务凭证的默认值。
@@ -128,7 +128,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Secret 是存储服务密钥的键名。
                 /// </summary>
-                public const string Secret = "Asset/Publisher/Secret@Editor";
+                public const string Secret = "XAsset/Publisher/Secret@Editor";
 
                 /// <summary>
                 /// SecretDefault 是存储服务密钥的默认值。
@@ -138,7 +138,7 @@ namespace EFramework.Unity.Asset.Editor
                 /// <summary>
                 /// Section 获取面板章节的名称。
                 /// </summary>
-                public override string Section => "Asset";
+                public override string Section => "XAsset";
 
                 /// <summary>
                 /// Priority 获取面板显示的优先级。

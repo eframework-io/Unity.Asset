@@ -236,11 +236,11 @@ namespace EFramework.Unity.Asset
                         {
                             manifestBundle = AssetBundle.LoadFromFile(file, 0, Constants.GetOffset(Path.GetFileName(file)));
                             Manifest = manifestBundle.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
-                            XLog.Notice("XAsset.Bundle.Initialize: load manifest from <a href=\"file:///{0}\">{1}</a> succeeded.", Path.GetFullPath(file), Path.GetRelativePath(XEnv.ProjectPath, file));
+                            XLog.Notice("XAsset.Bundle.Initialize: load manifest from <a href=\"file:///{0}\">{1}</a> succeeded.", Path.GetFullPath(file), Path.GetRelativePath(XEnv.LocalPath, file));
                         }
-                        catch (Exception e) { XLog.Panic(e, "XAsset.Bundle.Initialize: load manifest from <a href=\"file:///{0}\">{1}</a> failed.".Format(Path.GetFullPath(file), Path.GetRelativePath(XEnv.ProjectPath, file))); }
+                        catch (Exception e) { XLog.Panic(e, "XAsset.Bundle.Initialize: load manifest from <a href=\"file:///{0}\">{1}</a> failed.".Format(Path.GetFullPath(file), Path.GetRelativePath(XEnv.LocalPath, file))); }
                     }
-                    else XLog.Warn("XAsset.Bundle.Initialize: load failed because of non exist file: {0}.", Path.GetRelativePath(XEnv.ProjectPath, file));
+                    else XLog.Warn("XAsset.Bundle.Initialize: load failed because of non exist file: {0}.", Path.GetRelativePath(XEnv.LocalPath, file));
                 }
                 else Manifest = null;
             }
