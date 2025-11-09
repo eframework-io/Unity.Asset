@@ -5,7 +5,7 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/eframework-io/Unity.Asset)
 [![Discord](https://img.shields.io/discord/1422114598835851286?label=Discord&logo=discord)](https://discord.gg/XMPx2wXSz3)
 
-XAsset.Preferences 提供了运行时的首选项管理，用于控制运行模式、调试选项和资源路径等配置项。
+提供了运行时的首选项管理，用于控制运行模式、调试选项和资源路径等配置项。
 
 ## 功能特性
 

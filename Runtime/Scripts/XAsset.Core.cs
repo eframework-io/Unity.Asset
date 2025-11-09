@@ -10,7 +10,7 @@ using EFramework.Unity.Utility;
 namespace EFramework.Unity.Asset
 {
     /// <summary>
-    /// XAsset.Core 是资源管理器的基础模块，提供了内部事件管理器、异步加载处理器等功能。
+    /// XAsset.Core 提供了内部事件管理器、异步加载处理器等功能，是资源管理器的基础模块。
     /// </summary>
     /// <remarks>
     /// <code>

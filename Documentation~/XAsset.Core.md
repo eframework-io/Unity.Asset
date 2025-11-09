@@ -5,7 +5,7 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/eframework-io/Unity.Asset)
 [![Discord](https://img.shields.io/discord/1422114598835851286?label=Discord&logo=discord)](https://discord.gg/XMPx2wXSz3)
 
-XAsset.Core 是资源管理器的基础模块，提供了内部事件管理器、异步加载处理器等功能。
+提供了内部事件管理器、异步加载处理器等功能，是资源管理器的基础模块。
 
 ## 功能特性
 

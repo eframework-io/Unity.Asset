@@ -5,7 +5,7 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/eframework-io/Unity.Asset)
 [![Discord](https://img.shields.io/discord/1422114598835851286?label=Discord&logo=discord)](https://discord.gg/XMPx2wXSz3)
 
-XAsset.Publisher 实现了资源包的发布工作流，用于将打包好的资源发布至存储服务中。
+实现了资源包的发布工作流，用于将打包好的资源发布至存储服务中。
 
 ## 功能特性
 

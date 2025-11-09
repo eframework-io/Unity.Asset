@@ -5,7 +5,7 @@
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-Explore-blue)](https://deepwiki.com/eframework-io/Unity.Asset)
 [![Discord](https://img.shields.io/discord/1422114598835851286?label=Discord&logo=discord)](https://discord.gg/XMPx2wXSz3)
 
-XAsset.Scene 提供了 Unity 场景的加载与卸载，支持自动处理依赖资源的生命周期。
+提供了 Unity 场景的加载与卸载，支持自动处理依赖资源的生命周期。
 
 ## 功能特性
 
