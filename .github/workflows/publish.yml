@@ -149,7 +149,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
         run: |
-          npm version ${{ needs.prepare.outputs.new_version }} --no-git-tag-version
+          npm version ${{ needs.prepare.outputs.new_version }} --no-git-tag-version || true
           npm publish --access public
 
       - name: 提交版本标签
