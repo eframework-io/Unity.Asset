@@ -63,21 +63,21 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "io.eframework.unity.utility": "1.0.0",
-        "io.eframework.unity.editor": "1.0.0"
+        "io.eframework.unity.utility": "1.1.0",
+        "io.eframework.unity.editor": "1.0.1"
       }
     },
     "io.eframework.unity.editor": {
-      "version": "1.0.0",
+      "version": "1.0.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "io.eframework.unity.utility": "1.0.0"
+        "io.eframework.unity.utility": "1.1.0"
       },
       "url": "https://registry.npmjs.com"
     },
     "io.eframework.unity.utility": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
