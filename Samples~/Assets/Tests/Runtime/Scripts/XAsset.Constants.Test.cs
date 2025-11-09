@@ -37,8 +37,8 @@ public class TestXAssetConstants
         }
 
         // Assert
-        Assert.AreEqual(expected, name, "生成的标签应符合预期格式。");
-        if (!string.IsNullOrEmpty(path)) Assert.IsTrue(Constants.nameCache.ContainsKey(path), "资源路径在首次调用后应被缓存。");
+        Assert.That(expected, Is.EqualTo(name), "生成的标签应符合预期格式。");
+        if (!string.IsNullOrEmpty(path)) Assert.That(Constants.nameCache.ContainsKey(path), Is.True, "资源路径在首次调用后应被缓存。");
     }
 
     [TestCase(true, true, true)]
@@ -50,9 +50,9 @@ public class TestXAssetConstants
         Constants.debugMode = debugMode;
 
         // Assert
-        Assert.AreEqual(Constants.bundleMode, bundleMode, "当在偏好设置中设置时，BundleMode 应为 true。");
-        Assert.AreEqual(Constants.referMode, referMode, "当 BundleMode 和 ReferMode 在偏好设置中都设置时，ReferMode 应为 true。");
-        Assert.AreEqual(Constants.debugMode, debugMode, "当 BundleMode 和 DebugMode 在偏好设置中都设置时，DebugMode 应为 true。");
+        Assert.That(Constants.bundleMode, Is.EqualTo(bundleMode), "当在偏好设置中设置时，BundleMode 应为 true。");
+        Assert.That(Constants.referMode, Is.EqualTo(referMode), "当 BundleMode 和 ReferMode 在偏好设置中都设置时，ReferMode 应为 true。");
+        Assert.That(Constants.debugMode, Is.EqualTo(debugMode), "当 BundleMode 和 DebugMode 在偏好设置中都设置时，DebugMode 应为 true。");
     }
 
     [Test]
@@ -65,7 +65,7 @@ public class TestXAssetConstants
         var actualLocalPath = Constants.LocalPath;
 
         // Assert
-        Assert.AreEqual(expectedLocalPath, actualLocalPath, "LocalPath 应与预期路径匹配。");
-        Assert.IsTrue(Constants.bLocalPath, "获取 LocalPath后，bLocalPath 标志应被设置。");
+        Assert.That(expectedLocalPath, Is.EqualTo(actualLocalPath), "LocalPath 应与预期路径匹配。");
+        Assert.That(Constants.bLocalPath, Is.True, "获取 LocalPath后，bLocalPath 标志应被设置。");
     }
 }

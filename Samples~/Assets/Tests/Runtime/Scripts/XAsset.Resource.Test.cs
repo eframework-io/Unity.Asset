@@ -52,34 +52,34 @@ public class TestXAssetResource
 
         // 非泛型加载
         var asset1 = Resource.Load(assetPath, typeof(GameObject), retain: true) as GameObject;
-        Assert.IsNotNull(asset1, "加载的资产不应为空。");
-        Assert.IsInstanceOf<GameObject>(asset1, "加载的资产应为 GameObject 类型。");
+        Assert.That(asset1, Is.Not.Null, "加载的资产不应为空。");
+        Assert.That(asset1, Is.InstanceOf<GameObject>(), "加载的资产应为 GameObject 类型。");
         if (bundleMode)
         {
-            if (referMode) Assert.IsNotNull(asset1.GetComponent<Resource.Refer>(), "引用模式下 GameObject 实例上的 Resource.Refer 对象不应当为空。");
+            if (referMode) Assert.That(asset1.GetComponent<Resource.Refer>(), Is.Not.Null, "引用模式下 GameObject 实例上的 Resource.Refer 对象不应当为空。");
             // 使用 AssetBundle 模式加载时，Resource.Refer 组件会在源实例上保持，此处非 refer 模式下不作验证。
-            // else Assert.IsNull(asset1.GetComponent<Resource.Refer>(), "非引用模式下 GameObject 实例上的 Resource.Refer 对象应当为空。");
+            // else Assert.That(asset1.GetComponent<Resource.Refer>(), Is.Null, "非引用模式下 GameObject 实例上的 Resource.Refer 对象应当为空。");
 
             var bundleInfo = Bundle.Find(bundleName);
-            Assert.AreEqual(1, bundleInfo.Count, "retain = true 时引用计数应当为 1。");
+            Assert.That(bundleInfo.Count, Is.EqualTo(1), "retain = true 时引用计数应当为 1。");
 
             // 卸载
             Assert.DoesNotThrow(() => Resource.Unload(assetPath));
-            Assert.AreEqual(0, bundleInfo.Count, "资源卸载后的引用计数应当仍为 0。");
+            Assert.That(bundleInfo.Count, Is.EqualTo(0), "资源卸载后的引用计数应当仍为 0。");
         }
 
         // 泛型加载
         var asset2 = Resource.Load<GameObject>(assetPath, retain: false);
-        Assert.IsNotNull(asset2, "加载的资产不应为空。");
-        Assert.IsInstanceOf<GameObject>(asset2, "加载的资产应为 GameObject 类型。");
+        Assert.That(asset2, Is.Not.Null, "加载的资产不应为空。");
+        Assert.That(asset2, Is.InstanceOf<GameObject>(), "加载的资产应为 GameObject 类型。");
         if (bundleMode)
         {
             var bundleInfo = Bundle.Find(bundleName);
-            Assert.AreEqual(0, bundleInfo.Count, "retain = false 时引用计数应当为 0。");
+            Assert.That(bundleInfo.Count, Is.EqualTo(0), "retain = false 时引用计数应当为 0。");
         }
 
         var notExistAsset = Resource.Load(notExistPath, typeof(GameObject));
-        Assert.IsNull(notExistAsset, "加载的资产应为空。");
+        Assert.That(notExistAsset, Is.Null, "加载的资产应为空。");
 
         LogAssert.ignoreFailingMessages = false;
     }
@@ -111,20 +111,20 @@ public class TestXAssetResource
                 var handler1 = Resource.LoadAsync(assetPath, typeof(GameObject), origin =>
                 {
                     var asset = origin as GameObject;
-                    Assert.IsNotNull(asset, "加载的资产不应为空。");
-                    Assert.IsInstanceOf<GameObject>(asset, "加载的资产应为 GameObject 类型。");
+                    Assert.That(asset, Is.Not.Null, "加载的资产不应为空。");
+                    Assert.That(asset, Is.InstanceOf<GameObject>(), "加载的资产应为 GameObject 类型。");
                     if (bundleMode)
                     {
-                        if (referMode) Assert.IsNotNull(asset.GetComponent<Resource.Refer>(), "引用模式下 GameObject 实例上的 Resource.Refer 对象不应当为空。");
+                        if (referMode) Assert.That(asset.GetComponent<Resource.Refer>(), Is.Not.Null, "引用模式下 GameObject 实例上的 Resource.Refer 对象不应当为空。");
                         // 使用 AssetBundle 模式加载时，Resource.Refer 组件会在源实例上保持，此处非 refer 模式下不作验证。
-                        // else Assert.IsNull(asset.GetComponent<Resource.Refer>(), "非引用模式下 GameObject 实例上的 Resource.Refer 对象应当为空。");
+                        // else Assert.That(asset.GetComponent<Resource.Refer>(), Is.Null, "非引用模式下 GameObject 实例上的 Resource.Refer 对象应当为空。");
 
                         var bundleInfo = Bundle.Find(bundleName);
-                        Assert.AreEqual(1, bundleInfo.Count, "retain = true 时引用计数应当为 1。");
+                        Assert.That(bundleInfo.Count, Is.EqualTo(1), "retain = true 时引用计数应当为 1。");
 
                         // 卸载
                         Assert.DoesNotThrow(() => Resource.Unload(assetPath));
-                        Assert.AreEqual(0, bundleInfo.Count, "资源卸载后的引用计数应当仍为 0。");
+                        Assert.That(bundleInfo.Count, Is.EqualTo(0), "资源卸载后的引用计数应当仍为 0。");
                     }
                 }, retain: true);
                 yield return handler1;
@@ -132,19 +132,19 @@ public class TestXAssetResource
                 // 测试泛型加载
                 var handler2 = Resource.LoadAsync<GameObject>(assetPath, asset =>
                 {
-                    Assert.IsNotNull(asset, "加载的资产不应为空。");
-                    Assert.IsInstanceOf<GameObject>(asset, "加载的资产应为 GameObject 类型。");
+                    Assert.That(asset, Is.Not.Null, "加载的资产不应为空。");
+                    Assert.That(asset, Is.InstanceOf<GameObject>(), "加载的资产应为 GameObject 类型。");
                     if (bundleMode)
                     {
                         var bundleInfo = Bundle.Find(bundleName);
-                        Assert.AreEqual(0, bundleInfo.Count, "retain = false 时引用计数应当为 0。");
+                        Assert.That(bundleInfo.Count, Is.EqualTo(0), "retain = false 时引用计数应当为 0。");
                     }
                 }, retain: false);
                 yield return handler2;
 
                 var handler3 = Resource.LoadAsync(notExistPath, typeof(GameObject), asset =>
                 {
-                    Assert.IsNull(asset, "加载的资产应为空。");
+                    Assert.That(asset, Is.Null, "加载的资产应为空。");
                 });
                 yield return handler3;
             }
@@ -159,10 +159,10 @@ public class TestXAssetResource
         Resource.Loading.Clear();
 
         Resource.Loading.Add("TestIsLoading", new Resource.Task());
-        Assert.IsTrue(Resource.IsLoading("TestIsLoading"), "应当返回正在加载。");
-        Assert.IsFalse(Resource.IsLoading(null), "应当返回未正在加载。");
-        Assert.IsFalse(Resource.IsLoading(string.Empty), "应当返回未正在加载。");
-        Assert.IsFalse(Resource.IsLoading("Invalid"), "应当返回未正在加载。");
+        Assert.That(Resource.IsLoading("TestIsLoading"), Is.True, "应当返回正在加载。");
+        Assert.That(Resource.IsLoading(null), Is.False, "应当返回未正在加载。");
+        Assert.That(Resource.IsLoading(string.Empty), Is.False, "应当返回未正在加载。");
+        Assert.That(Resource.IsLoading("Invalid"), Is.False, "应当返回未正在加载。");
 
         Resource.Loading.Clear();
     }

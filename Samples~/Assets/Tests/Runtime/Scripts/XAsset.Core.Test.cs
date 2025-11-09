@@ -49,21 +49,21 @@ public class TestXAssetCore
                 doneCount = 2
             };
             var progress = handler.Progress;
-            Assert.AreEqual(0.4f, progress, "Progress应该被正确计算。");
+            Assert.That(progress, Is.EqualTo(0.4f), "Progress应该被正确计算。");
 
             // 测试IsDone
             handler = Resource.LoadAsync("Assets/Tests/Runtime/Resources/Bundle/Prefab/TestCube", typeof(GameObject));
-            Assert.IsFalse(handler.IsDone, "当Operation未完成时，IsDone应为false。");
+            Assert.That(handler.IsDone, Is.False, "当Operation未完成时，IsDone应为false。");
             yield return handler;
-            Assert.IsTrue(handler.IsDone, "当Operation完成时，IsDone应为true。");
+            Assert.That(handler.IsDone, Is.True, "当Operation完成时，IsDone应为true。");
 
             handler = Resource.LoadAsync("NotExist", typeof(GameObject));
             yield return handler;
-            Assert.IsTrue(handler.Error, "当加载不存在的资源时，Error应为true。");
+            Assert.That(handler.Error, Is.True, "当加载不存在的资源时，Error应为true。");
 
             // 测试MoveNext
             handler = Resource.LoadAsync("Assets/Tests/Runtime/Resources/Bundle/Prefab/TestCube", typeof(GameObject));
-            Assert.AreNotEqual(handler.MoveNext(), handler.IsDone, "当 Operation 不为空时，MoveNext 应为 true。");
+            Assert.That(handler.MoveNext(), Is.Not.EqualTo(handler.IsDone), "当 Operation 不为空时，MoveNext 应为 true。");
             yield return handler;
 
             // 测试Preload 和 Postload
@@ -73,20 +73,20 @@ public class TestXAssetCore
             handler.OnPreload += () => preloadWasCalled = true;
             handler.OnPostload += () => postloadWasCalled = true;
             yield return Resource.LoadAsync("Assets/Tests/Runtime/Resources/Bundle/Prefab/TestCube", typeof(GameObject), null, handler);
-            Assert.IsTrue(preloadWasCalled, "OnPreload 事件应被调用。");
-            Assert.IsTrue(postloadWasCalled, "OnPostload 事件应被调用。");
+            Assert.That(preloadWasCalled, Is.True, "OnPreload 事件应被调用。");
+            Assert.That(postloadWasCalled, Is.True, "OnPostload 事件应被调用。");
 
             // 测试Reset
             handler.Reset();
-            Assert.AreEqual(0, handler.doneCount, "doneCount 应重置为 0。");
-            Assert.AreEqual(0, handler.totalCount, "totalCount 应重置为 0。");
-            Assert.IsNull(handler.Request, "Request 应重置为 null。");
+            Assert.That(handler.doneCount, Is.EqualTo(0), "doneCount 应重置为 0。");
+            Assert.That(handler.totalCount, Is.EqualTo(0), "totalCount 应重置为 0。");
+            Assert.That(handler.Request, Is.Null, "Request 应重置为 null。");
             preloadWasCalled = false;
             postloadWasCalled = false;
             handler.InvokePreload();
             handler.InvokePostload();
-            Assert.IsFalse(preloadWasCalled, "OnPreload 事件不应被调用。");
-            Assert.IsFalse(postloadWasCalled, "OnPostload 事件不应被调用。");
+            Assert.That(preloadWasCalled, Is.False, "OnPreload 事件不应被调用。");
+            Assert.That(postloadWasCalled, Is.False, "OnPostload 事件不应被调用。");
         }
 
         LogAssert.ignoreFailingMessages = false;

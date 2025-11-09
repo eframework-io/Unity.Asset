@@ -40,8 +40,8 @@ public class TestXAssetBundle
         Constants.bBundleMode = true;
         Constants.bundleMode = bundleMode;
         Bundle.Initialize();
-        if (bundleMode) Assert.IsNotNull(Bundle.Manifest, "Bundle 模式下 Manifest 应该被加载且不为空。");
-        else Assert.IsNull(Bundle.Manifest, "非 Bundle 模式下 Manifest 应保持为空。");
+        if (bundleMode) Assert.That(Bundle.Manifest, Is.Not.Null, "Bundle 模式下 Manifest 应该被加载且不为空。");
+        else Assert.That(Bundle.Manifest, Is.Null, "非 Bundle 模式下 Manifest 应保持为空。");
     }
 
     [Test]
@@ -56,8 +56,8 @@ public class TestXAssetBundle
         int count2 = bundle.Retain();
 
         // Assert
-        Assert.AreEqual(1, count1, "Retain 应该增加引用计数。");
-        Assert.AreEqual(2, count2, "Retain 应该增加引用计数。");
+        Assert.That(count1, Is.EqualTo(1), "Retain 应该增加引用计数。");
+        Assert.That(count2, Is.EqualTo(2), "Retain 应该增加引用计数。");
     }
 
     [Test]
@@ -74,9 +74,9 @@ public class TestXAssetBundle
         int count = bundle.Release();
 
         // Assert
-        Assert.AreEqual(0, count, "Release应该减少引用计数。");
-        Assert.IsFalse(Bundle.Loaded.ContainsKey(bundle.Name), "当计数为零时，Bundle 应该从 Loaded 中移除。");
-        Assert.IsNotNull(assetBundle, "当 bundle 被释放时，应该通知事件。");
+        Assert.That(count, Is.EqualTo(0), "Release应该减少引用计数。");
+        Assert.That(Bundle.Loaded.ContainsKey(bundle.Name), Is.False, "当计数为零时，Bundle 应该从 Loaded 中移除。");
+        Assert.That(assetBundle, Is.Not.Null, "当 bundle 被释放时，应该通知事件。");
     }
 
     [Test]
@@ -85,7 +85,7 @@ public class TestXAssetBundle
         // Act
         var bundleName = Constants.GetName("Assets/Tests/Runtime/Resources/Bundle/Prefab/TestCube.prefab");
         // 检查初始状态
-        Assert.IsNull(Bundle.Find(bundleName), "初始状态下 Bundle 不应该被加载。");
+        Assert.That(Bundle.Find(bundleName), Is.Null, "初始状态下 Bundle 不应该被加载。");
         var bundle = Bundle.Load(bundleName);
 
         // 测试加载不存在的bundle
@@ -96,10 +96,10 @@ public class TestXAssetBundle
         var noneBundle = Bundle.Load(noneBundleName);
 
         // Assert 
-        Assert.IsNotNull(bundle, "加载的 bundle 不应为空。");
-        Assert.AreEqual(bundleName, bundle.Name, "加载的 bundle 名称应匹配。");
-        Assert.IsNull(noneBundle, "加载不存在的 bundle 应返回null。");
-        Assert.IsFalse(Bundle.Loaded.ContainsKey(noneBundleName), "不存在的 bundle 不应被添加到 Loaded 字典中。");
+        Assert.That(bundle, Is.Not.Null, "加载的 bundle 不应为空。");
+        Assert.That(bundleName, Is.EqualTo(bundle.Name), "加载的 bundle 名称应匹配。");
+        Assert.That(noneBundle, Is.Null, "加载不存在的 bundle 应返回null。");
+        Assert.That(Bundle.Loaded.ContainsKey(noneBundleName), Is.False, "不存在的 bundle 不应被添加到 Loaded 字典中。");
     }
 
     [UnityTest]
@@ -109,8 +109,8 @@ public class TestXAssetBundle
         var bundleName = Constants.GetName("Assets/Tests/Runtime/Resources/Bundle/Prefab/TestCube.prefab");
         yield return Bundle.LoadAsync(bundleName);
         var bundle = Bundle.Find(bundleName);
-        Assert.IsNotNull(bundle, "加载的 bundle 不应为空。");
-        Assert.AreEqual(bundleName, bundle.Name, "加载的 bundle 名称应匹配。");
+        Assert.That(bundle, Is.Not.Null, "加载的 bundle 不应为空。");
+        Assert.That(bundleName, Is.EqualTo(bundle.Name), "加载的 bundle 名称应匹配。");
     }
 
     [UnityTest]
@@ -136,8 +136,8 @@ public class TestXAssetBundle
             yield return iter2;
             yield return iter3;
 
-            Assert.IsNotNull(bundle, "加载的 bundle 不应为空。");
-            Assert.AreEqual(bundleName, bundle.Name, "加载的 bundle 名称应匹配。");
+            Assert.That(bundle, Is.Not.Null, "加载的 bundle 不应为空。");
+            Assert.That(bundleName, Is.EqualTo(bundle.Name), "加载的 bundle 名称应匹配。");
 
             Reset();
         }
@@ -146,11 +146,11 @@ public class TestXAssetBundle
     [Test]
     public void Find()
     {
-        Assert.IsTrue(Bundle.Find("TestBundle") == null);
+        Assert.That(Bundle.Find("TestBundle"), Is.Null);
 
         var bundle = new Bundle { Name = "TestBundle", Count = 1 };
         Bundle.Loaded.Add(bundle.Name, bundle);
 
-        Assert.IsTrue(Bundle.Find("TestBundle") != null);
+        Assert.That(Bundle.Find("TestBundle"), Is.Not.Null);
     }
 }

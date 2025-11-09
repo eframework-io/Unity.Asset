@@ -38,16 +38,16 @@ public class TestXAssetPublisher
         var report = XEditor.Tasks.Execute(handler);
 
         // 验证发布结果
-        Assert.AreEqual(report.Result, XEditor.Tasks.Result.Succeeded, "资源发布应当成功。");
+        Assert.That(report.Result == XEditor.Tasks.Result.Succeeded, "资源发布应当成功。");
 
         var manifestUrl = $"{XPrefs.Asset.GetString(Publisher.Preferences.Endpoint)}/{XPrefs.Asset.GetString(Publisher.Preferences.Bucket)}/{XPrefs.Asset.GetString(XAsset.Preferences.RemoteUri)}/{XMani.Default}";
         var request = UnityWebRequest.Get(manifestUrl);
         request.timeout = 10;
         request.SendWebRequest();
         while (!request.isDone) { }
-        Assert.IsTrue(request.responseCode == 200, "资源清单应当请求成功");
+        Assert.That(request.responseCode == 200, Is.True, "资源清单应当请求成功");
 
         var manifest = new XMani.Manifest();
-        Assert.IsTrue(manifest.Parse(request.downloadHandler.text, out _), "资源清单应当读取成功");
+        Assert.That(manifest.Parse(request.downloadHandler.text, out _), Is.True, "资源清单应当读取成功");
     }
 }

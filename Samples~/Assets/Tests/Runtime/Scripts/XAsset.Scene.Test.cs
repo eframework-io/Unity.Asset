@@ -79,8 +79,8 @@ public class TestXAssetScene
                         break;
                     }
                 }
-                if (sceneName == "NotExist") Assert.IsFalse(isLoaded, "加载不存在的场景应当失败。");
-                else Assert.IsTrue(isLoaded, "加载存在的场景应当成功。");
+                if (sceneName == "NotExist") Assert.That(isLoaded, Is.False, "加载不存在的场景应当失败。");
+                else Assert.That(isLoaded, Is.True, "加载存在的场景应当成功。");
             }
         }
 
@@ -117,14 +117,14 @@ public class TestXAssetScene
                 }
                 if (sceneName == "NotExist")
                 {
-                    Assert.IsFalse(isLoaded, "加载不存在的场景应当失败。");
-                    Assert.IsTrue(handler.Error, "加载不存在的场景 handler.Error 应当为 true。");
+                    Assert.That(isLoaded, Is.False, "加载不存在的场景应当失败。");
+                    Assert.That(handler.Error, Is.True, "加载不存在的场景 handler.Error 应当为 true。");
                 }
                 else
                 {
-                    Assert.IsTrue(isLoaded, "加载存在的场景应当成功。");
-                    Assert.IsFalse(handler.Error, "加载存在的场景 handler.Error 应当为 false。");
-                    Assert.AreEqual(1f, handler.Progress, "加载存在的场景 handler.Progress 应当为 1f。");
+                    Assert.That(isLoaded, Is.True, "加载存在的场景应当成功。");
+                    Assert.That(handler.Error, Is.False, "加载存在的场景 handler.Error 应当为 false。");
+                    Assert.That(handler.Progress, Is.EqualTo(1f), "加载存在的场景 handler.Progress 应当为 1f。");
                 }
             }
         }
@@ -138,10 +138,10 @@ public class TestXAssetScene
         XAsset.Scene.Loading.Clear();
 
         XAsset.Scene.Loading.Add("TestIsLoading", new XAsset.Scene.Task());
-        Assert.IsTrue(XAsset.Scene.IsLoading("TestIsLoading"), "应当返回正在加载。");
-        Assert.IsFalse(XAsset.Scene.IsLoading(null), "应当返回未正在加载。");
-        Assert.IsFalse(XAsset.Scene.IsLoading(string.Empty), "应当返回未正在加载。");
-        Assert.IsFalse(XAsset.Scene.IsLoading("Invalid"), "应当返回未正在加载。");
+        Assert.That(XAsset.Scene.IsLoading("TestIsLoading"), Is.True, "应当返回正在加载。");
+        Assert.That(XAsset.Scene.IsLoading(null), Is.False, "应当返回未正在加载。");
+        Assert.That(XAsset.Scene.IsLoading(string.Empty), Is.False, "应当返回未正在加载。");
+        Assert.That(XAsset.Scene.IsLoading("Invalid"), Is.False, "应当返回未正在加载。");
 
         XAsset.Scene.Loading.Clear();
     }

@@ -13,24 +13,24 @@ public class TestXAssetPreferences
     [Test]
     public void Keys()
     {
-        Assert.AreEqual(Preferences.BundleMode, "Asset/BundleMode");
-        Assert.AreEqual(Preferences.ReferMode, "Asset/ReferMode");
-        Assert.AreEqual(Preferences.DebugMode, "Asset/DebugMode");
-        Assert.AreEqual(Preferences.SimulateMode, "Asset/SimulateMode@Editor");
-        Assert.AreEqual(Preferences.OffsetFactor, "Asset/OffsetFactor");
-        Assert.AreEqual(Preferences.AssetUri, "Asset/AssetUri");
-        Assert.AreEqual(Preferences.LocalUri, "Asset/LocalUri");
-        Assert.AreEqual(Preferences.RemoteUri, "Asset/RemoteUri");
+        Assert.That(Preferences.BundleMode, Is.EqualTo("XAsset/BundleMode"));
+        Assert.That(Preferences.ReferMode, Is.EqualTo("XAsset/ReferMode"));
+        Assert.That(Preferences.DebugMode, Is.EqualTo("XAsset/DebugMode"));
+        Assert.That(Preferences.SimulateMode, Is.EqualTo("XAsset/SimulateMode@Editor"));
+        Assert.That(Preferences.OffsetFactor, Is.EqualTo("XAsset/OffsetFactor"));
+        Assert.That(Preferences.AssetUri, Is.EqualTo("XAsset/AssetUri"));
+        Assert.That(Preferences.LocalUri, Is.EqualTo("XAsset/LocalUri"));
+        Assert.That(Preferences.RemoteUri, Is.EqualTo("XAsset/RemoteUri"));
     }
 
     [Test]
     public void Defaults()
     {
-        Assert.AreEqual(Preferences.BundleModeDefault, true);
-        Assert.AreEqual(Preferences.ReferModeDefault, true);
-        Assert.AreEqual(Preferences.OffsetFactorDefault, 4);
-        Assert.AreEqual(Preferences.AssetUriDefault, "Patch@Assets.zip");
-        Assert.AreEqual(Preferences.LocalUriDefault, "Assets");
-        Assert.AreEqual(Preferences.RemoteUriDefault, "Builds/Patch/${Environment.Author}/${Environment.Version}/${Environment.Platform}/Assets");
+        Assert.That(Preferences.BundleModeDefault, Is.True);
+        Assert.That(Preferences.ReferModeDefault, Is.True);
+        Assert.That(Preferences.OffsetFactorDefault, Is.EqualTo(4));
+        Assert.That(Preferences.AssetUriDefault, Is.EqualTo("Patch@Assets.zip"));
+        Assert.That(Preferences.LocalUriDefault, Is.EqualTo("Assets"));
+        Assert.That(Preferences.RemoteUriDefault, Is.EqualTo("Builds/Patch/${Environment.Author}/${Environment.Version}/${Environment.Platform}/Assets"));
     }
 }

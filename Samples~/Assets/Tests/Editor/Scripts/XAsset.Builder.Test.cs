@@ -34,24 +34,24 @@ public class TestXAssetBuilder : IPrebuildSetup
 
         var report = XEditor.Tasks.Execute(handler);
 
-        Assert.AreEqual(report.Result, XEditor.Tasks.Result.Succeeded, "资源构建应当成功。");
-        Assert.IsTrue(XFile.HasFile(manifestFile), "资源清单应当生成成功。");
+        Assert.That(report.Result == XEditor.Tasks.Result.Succeeded, "资源构建应当成功。");
+        Assert.That(XFile.HasFile(manifestFile), "资源清单应当生成成功。");
 
         var manifest = new XMani.Manifest();
-        Assert.IsTrue(manifest.Read(manifestFile)(), "资源清单应当读取成功。");
+        Assert.That(manifest.Read(manifestFile)(), "资源清单应当读取成功。");
 
         foreach (var file in manifest.Files)
         {
             var path = XFile.PathJoin(buildDir, file.Name);
-            Assert.IsTrue(XFile.HasFile(path), "文件应当存在于本地：" + file.Name);
-            Assert.AreEqual(XFile.FileMD5(path), file.MD5, "文件MD5应当一致：" + file.Name);
-            Assert.AreEqual(XFile.FileSize(path), file.Size, "文件大小应当一致：" + file.Name);
+            Assert.That(XFile.HasFile(path), "文件应当存在于本地：" + file.Name);
+            Assert.That(XFile.FileMD5(path), Is.EqualTo(file.MD5), "文件MD5应当一致：" + file.Name);
+            Assert.That(XFile.FileSize(path), Is.EqualTo(file.Size), "文件大小应当一致：" + file.Name);
         }
 
         // 复制资源到本地
         if (XFile.HasDirectory(XAsset.Constants.LocalPath)) XFile.DeleteDirectory(XAsset.Constants.LocalPath);
         XFile.CopyDirectory(buildDir, XAsset.Constants.LocalPath);
-        Assert.IsTrue(XFile.HasDirectory(XAsset.Constants.LocalPath));
+        Assert.That(XFile.HasDirectory(XAsset.Constants.LocalPath), "本地目录应当存在。");
     }
 
     [Test]
@@ -75,12 +75,12 @@ public class TestXAssetBuilder : IPrebuildSetup
         var dependency = Builder.GenDependency();
 
         // 验证依赖关系生成结果
-        Assert.IsNotNull(dependency, "依赖关系字典不应为空");
+        Assert.That(dependency, Is.Not.Null, "依赖关系字典不应为空。");
 
         // 验证MergeSingle选项的效果
         var hasTestSingleBundle = dependency.Values.Any(k => k.Exists(e => e.Contains("TestSingle")));
-        if (mergeSingle) Assert.IsFalse(hasTestSingleBundle, "启用 MergeSingle 时，TestSingle 资源不应有独立 Bundle。");
-        else Assert.IsTrue(hasTestSingleBundle, "未启用 MergeSingle 时，TestSingle 资源应有独立 Bundle。");
+        if (mergeSingle) Assert.That(hasTestSingleBundle, Is.False, "启用 MergeSingle 时，TestSingle 资源不应有独立 Bundle。");
+        else Assert.That(hasTestSingleBundle, Is.True, "未启用 MergeSingle 时，TestSingle 资源应有独立 Bundle。");
 
         // 验证MergeMaterial选项的效果
         var hasMaterialBundle = false;
@@ -96,8 +96,8 @@ public class TestXAssetBuilder : IPrebuildSetup
             }
             if (hasMaterialBundle) break;
         }
-        if (mergeMaterial) Assert.IsFalse(hasMaterialBundle, "启用 MergeMaterial 时，材质不应有独立 Bundle。");
-        else Assert.IsTrue(hasMaterialBundle, "未启用 MergeMaterial 时，材质应有独立 Bundle。");
+        if (mergeMaterial) Assert.That(hasMaterialBundle, Is.False, "启用 MergeMaterial 时，材质不应有独立 Bundle。");
+        else Assert.That(hasMaterialBundle, Is.True, "未启用 MergeMaterial 时，材质应有独立 Bundle。");
     }
 
     [TestCase(new string[] { "Assets/Tests/Runtime/Resources/Bundle/", "Assets/Tests/Runtime/Scenes/TestScene.unity" }, new string[] { }, TestName = "路径包含_无排除")]
@@ -116,7 +116,7 @@ public class TestXAssetBuilder : IPrebuildSetup
         var dependency = Builder.GenDependency();
 
         // 验证依赖关系生成结果
-        Assert.IsNotNull(dependency, "依赖关系字典不应为空。");
+        Assert.That(dependency, Is.Not.Null, "依赖关系字典不应为空。");
 
         // 验证Include选项的效果
         if (include.Length > 0)
@@ -131,7 +131,7 @@ public class TestXAssetBuilder : IPrebuildSetup
                     if (inc.Contains("*.unity"))
                     {
                         var hasUnityBundle = dependency.Values.Any(k => k.Exists(e => e.EndsWith(".unity")));
-                        Assert.IsTrue(hasUnityBundle, "应包含场景Bundle。");
+                        Assert.That(hasUnityBundle, Is.True, "应包含场景Bundle。");
                     }
                     continue;
                 }
@@ -154,7 +154,7 @@ public class TestXAssetBuilder : IPrebuildSetup
                     }
                 }
             }
-            Assert.IsTrue(allIncluded, "所有指定资源都被包含。");
+            Assert.That(allIncluded, Is.True, "所有指定资源都被包含。");
         }
 
         // 验证Exclude选项的效果
@@ -184,7 +184,7 @@ public class TestXAssetBuilder : IPrebuildSetup
                             }
                             if (hasUnityFile) break;
                         }
-                        Assert.IsFalse(hasUnityFile, $"通配符 {exc} 匹配的场景文件应被排除。");
+                        Assert.That(hasUnityFile, Is.False, $"通配符 {exc} 匹配的场景文件应被排除。");
                     }
                     continue;
                 }
@@ -202,7 +202,7 @@ public class TestXAssetBuilder : IPrebuildSetup
                             break;
                         }
                     }
-                    Assert.IsTrue(isExcluded, $"文件 {Path.GetFileName(exc)} 应被排除。");
+                    Assert.That(isExcluded, Is.True, $"文件 {Path.GetFileName(exc)} 应被排除。");
                 }
                 else if (XFile.HasDirectory(exc))
                 {
@@ -219,7 +219,7 @@ public class TestXAssetBuilder : IPrebuildSetup
                         }
                         if (!isExcluded) break;
                     }
-                    Assert.IsTrue(isExcluded, $"目录 {exc} 中的资源应被排除。");
+                    Assert.That(isExcluded, Is.True, $"目录 {exc} 中的资源应被排除。");
                 }
             }
         }
@@ -249,33 +249,33 @@ public class TestXAssetBuilder : IPrebuildSetup
             Builder.Stash();
 
             // 验证原始文件已被移动
-            Assert.IsFalse(XFile.HasFile(testStashFile), "原始文件应当被移动。");
-            Assert.IsFalse(XFile.HasFile(testStashFileMeta), "原始 meta 文件应当被移动。");
+            Assert.That(XFile.HasFile(testStashFile), Is.False, "原始文件应当被移动。");
+            Assert.That(XFile.HasFile(testStashFileMeta), Is.False, "原始 meta 文件应当被移动。");
 
             // 验证隐藏文件已创建
             var hiddenDir = $"{testStashDir}~";
             var hiddenDirMeta = XFile.PathJoin(Path.GetDirectoryName(testStashDir), "." + Path.GetFileName(testStashDir) + ".meta");
-            Assert.IsTrue(XFile.HasDirectory(hiddenDir), "隐藏文件应当存在。");
-            Assert.IsTrue(XFile.HasFile(hiddenDirMeta), "隐藏 meta 文件应当存在。");
+            Assert.That(XFile.HasDirectory(hiddenDir), Is.True, "隐藏文件应当存在。");
+            Assert.That(XFile.HasFile(hiddenDirMeta), Is.True, "隐藏 meta 文件应当存在。");
 
             // 验证stashFile已创建并包含正确内容
-            Assert.IsTrue(XFile.HasFile(Builder.stashFile), "暂存文件应当存在。");
+            Assert.That(XFile.HasFile(Builder.stashFile), Is.True, "暂存文件应当存在。");
             var stashContent = XFile.OpenText(Builder.stashFile);
-            Assert.IsTrue(stashContent.Contains(testStashDir), "暂存文件应当包含测试目录路径。");
+            Assert.That(stashContent.Contains(testStashDir), Is.True, "暂存文件应当包含测试目录路径。");
 
             // 执行Restore操作
             Assert.DoesNotThrow(() => Builder.Restore(), "恢复应当不抛出异常。");
 
             // 验证文件已恢复
-            Assert.IsTrue(XFile.HasFile(testStashFile), "原始文件应当恢复。");
-            Assert.IsTrue(XFile.HasFile(testStashFileMeta), "原始 meta 文件应当恢复。");
+            Assert.That(XFile.HasFile(testStashFile), Is.True, "原始文件应当恢复。");
+            Assert.That(XFile.HasFile(testStashFileMeta), Is.True, "原始 meta 文件应当恢复。");
 
             // 验证隐藏文件已被删除
-            Assert.IsFalse(XFile.HasDirectory(hiddenDir), "隐藏文件应当被删除。");
-            Assert.IsFalse(XFile.HasFile(hiddenDirMeta), "隐藏 meta 文件应当被删除。");
+            Assert.That(XFile.HasDirectory(hiddenDir), Is.False, "隐藏文件应当被删除。");
+            Assert.That(XFile.HasFile(hiddenDirMeta), Is.False, "隐藏 meta 文件应当被删除。");
 
             // 验证stashFile已被删除
-            Assert.IsFalse(XFile.HasFile(Builder.stashFile), "暂存文件应当被删除。");
+            Assert.That(XFile.HasFile(Builder.stashFile), Is.False, "暂存文件应当被删除。");
         }
         finally
         {
