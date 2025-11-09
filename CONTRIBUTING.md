@@ -12,18 +12,10 @@
 
 ## 技术路线
 
-### 1. 开发语言
-- C# 9.0：主要开发语言
-- 遵循 Unity C# 编码规范和最佳实践
-
-### 2. 开发工具
-- Unity 6000 LTS+：游戏引擎
-- Unity Test Framework：单元测试框架
-- VS Code/Visual Studio：代码编辑器
-
-### 3. 集成工具
-- Github Action：提供了自动化测试及发布工作流
-- Game CI：基于 unity-test-runner@v4 的测试环境
+- 编程语言：C# 9.0（Unity 2021+）
+- 单元测试：Unity Test Framework
+- 开发工具：Unity 6、VS Code/Visual Studio
+- 集成工具：Github Actions、Game CI
 
 ## 目录规范
 
