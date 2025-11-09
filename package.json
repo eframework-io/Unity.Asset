@@ -2,7 +2,7 @@
   "name": "io.eframework.unity.asset",
   "displayName": "EFramework Asset for Unity",
   "description": "完整的 Unity 资源管理解决方案，实现了从资源打包发布到运行时加载的全流程管理，支持资源加载、引用计数、自动卸载等特性。",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "unity": "2021.3",
   "license": "MIT",
   "author": {
